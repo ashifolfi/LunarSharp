@@ -1,0 +1,6 @@
+{
+	"name": "SRB2Lua Support",
+	"extensions": {
+		"msm": "msm-rb"
+	}
+}
