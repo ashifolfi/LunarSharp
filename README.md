@@ -1,63 +1,51 @@
-# The Clue programming language
+# LunarSharp
 
-![image](https://user-images.githubusercontent.com/87673997/156028540-7a94db51-dd90-4bc6-9718-96e056d24cab.png)  
-[![Crates.io](https://img.shields.io/crates/v/clue?style=flat-square)](https://crates.io/crates/clue)
-[![Crates.io](https://img.shields.io/crates/d/clue?style=flat-square)](https://crates.io/crates/clue)
+LunarSharp is a programming language that compiles into Lua code with a syntax similar to languages like C# or Rust.
 
-Clue is a programming language that compiles into Lua code with a syntax similar to languages like C or Rust.
+LunarSharp tries to be almost as simple as Lua (with only a slightly more advanced syntax) but adds many optional features that can make code look better or make some things (like metatables) easier to code.
 
-Clue tries to be almost as simple as Lua (with only a slightly more advanced syntax) but adds many optional features that can make code look better or make some things (like metatables) easier to code.
+LunarSharp does not compile to a specfic version of Lua: flags can be toggled to alter the output to allow most if not all versions or modifications of Lua to be compiled to with LunarSharp.
 
-Clue does not compile to a specfic version of Lua: flags can be toggled to alter the output to allow most if not all versions or modifications of Lua to be compiled to with Clue.
+Additionally support packages (WIP) can be used to change how certain internal functions act to match any changes in your specific Lua implementation. (See `src/support/SRB2` for an example on how this can be done)
+
+## Coming Soon
+These features are planned but are still being added
+- Class and namespace support
+- availability keyword support
+- case statements
+- support packages
+- preprocessor
+
+For any suggestion or bug you can make a github issue.
 
 ## General syntax differences
+### From Lua:
 - Code blocks are now inside `{}` instead of `then`/`do`/`repeat` and `end`/`until`
 - Comments are made with `// ...` or `/* ... */`
+- availability of a variable, function, or class must be explicitly defined
+- Variables are created with a specific type that cannot be changed*
 
-If you want a complete documentation of every change and addition in Clue check [the wiki](https://github.com/ClueLang/Clue/wiki).
+\*Variables created inside a function using the `var` keyword lack a type. Doing this is discouraged but not counted as an error as it can be useful.
+
+### From CSharp:
+- Classes are encouraged but not required
+- JavaDoc comments are used instead of XML for a much smaller impact on line count
+
+If you want a complete documentation of every change and addition in LunarSharp check [the wiki](https://github.com/ClueLang/Clue/wiki).
 
 ## Example code
-```
-print("Hello world!")
-
-local fn add(x, y) {
-    return x + y
-}
-
-global n = 1
-
-while n < 10 {
-    n += add(n, n)
-    if n == 3 {continue}
-    print(n)
-}
-```
-More examples can be found in [the wiki](https://github.com/ClueLang/Clue/wiki), the [Examples directory](https://github.com/ClueLang/Clue/tree/main/examples) or you can check [an example program made with LOVE using Clue](https://github.com/ClueLang/Clue-example).
+TODO: this
 
 ## How to install
 
 ### Using Cargo
-1. Paste and run this command in the console: `cargo install clue`
-2. Type `clue` in the console to run the compiler, it will explain the rest
-
-Additionally, `CARGO_PROFILE_RELEASE_LTO` can be used to make Clue run faster, at the expense of a slower install time: `CARGO_PROFILE_RELEASE_LTO=true cargo install clue`
+TODO: this
 
 ### Manual insallation
 1. Download the latest release and save it somewhere
 2. Open your system environment variables
-3. Add the path to the directory that contains `clue.exe` in the PATH variable
-4. Type `clue` in your cmd/PowerShell to run the compiler, it will explain the rest
+3. Add the path to the directory that contains `lunarsharp.exe` in the PATH variable
+4. Type `lunarsharp` in your cmd/PowerShell to run the compiler, it will explain the rest
 
-## More coming soon!
-There are still some features that I'm considering adding and others that will be added soon.
-The most likely ones to be added in the future are:
-- preprocessor (coming in 3.0)
-- types (coming in 4.0)
-
-For any suggestion or bug you can make a github issue.
-If you need help with the language itself, you can check out the new [Discord server](https://discord.gg/EQsnWpqN3C).
-
-I hope Clue will be useful to you :)
-
-## Why is Clue named Clue?
-~~I have no *clue*.~~
+## Why LunarSharp?
+MoonSharp was already taken by a .NET project and ClueSharp just sounds odd
