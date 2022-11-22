@@ -152,9 +152,9 @@ fn CompileFolder(path: &Path, rpath: String) -> Result<(), String> {
 		let rname = rpath.clone() + &name;
 		if filepath.is_dir() {
 			CompileFolder(filepath, rname + ".")?;
-		} else if filePathName.ends_with(".ms") {
+		} else if filePathName.ends_with(".cls") {
 			let code = CompileFile(filepath, name, 2)?;
-			let rname = rname.strip_suffix(".ms").unwrap();
+			let rname = rname.strip_suffix(".cls").unwrap();
 			AddToOutput(&format!(
 				"\t[\"{}\"] = function()\n{}\n\tend,\n",
 				rname, code
@@ -252,7 +252,7 @@ fn main() -> Result<(), String> {
 		AddToOutput(&code);
 		if !cli.dontsave {
 			compiledname =
-				String::from(path.display().to_string().strip_suffix(".ms").unwrap()) + ".lua";
+				String::from(path.display().to_string().strip_suffix(".cls").unwrap()) + ".lua";
 			check!(fs::write(&compiledname, unsafe { &finaloutput }))
 		}
 	} else {
