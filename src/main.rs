@@ -45,7 +45,7 @@ pub enum ContinueMode {
 }
 
 #[derive(Parser)]
-#[clap(about = "C/Rust like programming language that compiles into Lua code\nMade by Maiori\nhttps://github.com/ClueLang/Clue", version, long_about = None)]
+#[clap(about = "C#/Rust like programming language that compiles into Lua code\nFork by ashifolfi, Clue by Maiori\nhttps://github.com/ashifolfi/LunarSharp", version, long_about = None)]
 struct Cli {
 	/// The path to the directory where the *.clue files are located.
 	/// Every directory inside the given directory will be checked too.
@@ -152,9 +152,9 @@ fn CompileFolder(path: &Path, rpath: String) -> Result<(), String> {
 		let rname = rpath.clone() + &name;
 		if filepath.is_dir() {
 			CompileFolder(filepath, rname + ".")?;
-		} else if filePathName.ends_with(".cls") {
+		} else if filePathName.ends_with(".ls") {
 			let code = CompileFile(filepath, name, 2)?;
-			let rname = rname.strip_suffix(".cls").unwrap();
+			let rname = rname.strip_suffix(".ls").unwrap();
 			AddToOutput(&format!(
 				"\t[\"{}\"] = function()\n{}\n\tend,\n",
 				rname, code
@@ -252,7 +252,7 @@ fn main() -> Result<(), String> {
 		AddToOutput(&code);
 		if !cli.dontsave {
 			compiledname =
-				String::from(path.display().to_string().strip_suffix(".cls").unwrap()) + ".lua";
+				String::from(path.display().to_string().strip_suffix(".ls").unwrap()) + ".lua";
 			check!(fs::write(&compiledname, unsafe { &finaloutput }))
 		}
 	} else {
